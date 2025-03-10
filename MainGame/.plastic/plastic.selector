@@ -1,0 +1,4 @@
+repository "MainGame@GameDevsEHSU@cloud"
+  path "/"
+    br "/main"
+    co "/main"
