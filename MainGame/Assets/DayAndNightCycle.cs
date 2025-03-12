@@ -13,6 +13,8 @@ public class DayAndNightCycle : MonoBehaviour
 
     private DateTime currentTime;
     private DateTime lastDayTime;
+    private int startTime = 7;
+    private int timeOfDay; 
 
     private int currentDay = 1;
     private int currentWeek = 1;
@@ -26,6 +28,7 @@ public class DayAndNightCycle : MonoBehaviour
 
 
     public TMP_Text Calendar; // Reference to the Text object
+    public TMP_Text Clock;
 
     private void TimeUpdate()
     {
@@ -33,11 +36,18 @@ public class DayAndNightCycle : MonoBehaviour
         float secondsStep = SecondsInDay / realtimeDayLength * Time.deltaTime;
         currentTime = currentTime.AddSeconds(secondsStep);
 
+
         // Check and increment the days passed
         TimeSpan difference = currentTime - lastDayTime;
+
         if (difference.TotalSeconds >= SecondsInDay)
         {
             lastDayTime = currentTime;
+            timeOfDay ++; 
+        }
+        if (timeOfDay >= 24)
+        {
+            timeOfDay = startTime;
             currentDay++;
             currentDayofMonth++;
         }
@@ -84,6 +94,7 @@ public class DayAndNightCycle : MonoBehaviour
             currentYear++;
             currentMonth = 1;
         }
+        Clock.text = timeOfDay.ToString();
     }
     private void DayCycle() // Sets integer value to a String day of the week
     {
@@ -161,6 +172,7 @@ public class DayAndNightCycle : MonoBehaviour
     {
         currentTime = DateTime.Now + TimeSpan.FromHours(startHour);
         lastDayTime = currentTime;
+        timeOfDay = startTime;
 
         if (Calendar == null)
         {
