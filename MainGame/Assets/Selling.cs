@@ -1,8 +1,12 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Selling : MonoBehaviour
 {
+    public TMP_Text GoldUI;
+
     int npcBudget = 10000;
     int Item1Price = 100;
     int Item2Price = 150;
@@ -63,6 +67,13 @@ public class Selling : MonoBehaviour
             Debug.Log("No Item in Inventory");
         }
     }
+    void Start()
+    {
+        if (GoldUI == null)
+        {
+            GoldUI = GameObject.Find("GoldUI").GetComponent<TMP_Text>();
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -91,5 +102,6 @@ public class Selling : MonoBehaviour
             AddItem2();
             Debug.Log("Amount of Item 2 on Market: " + Item2QuantityOnMarket);
         }
+        GoldUI.text = PlayerRevInMarket.ToString();
     }
 }
