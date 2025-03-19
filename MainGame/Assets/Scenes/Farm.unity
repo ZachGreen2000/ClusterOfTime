@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Plant: {fileID: 0}
+  Plant_Offset: 1.75
 --- !u!4 &256549015
 Transform:
   m_ObjectHideFlags: 0
@@ -158,8 +159,8 @@ Transform:
   m_GameObject: {fileID: 256549013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7984967, y: 0.43019328, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.45, y: -0.63, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 982925641}

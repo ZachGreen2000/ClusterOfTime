@@ -21,12 +21,12 @@ public class Plant : MonoBehaviour
         gameObject.name = details.name;
 
         Plant_Pot pot = manager.plant_pots[pot_number];
-        pot.Set_Plant(this);
 
         transform.parent = pot.transform;
 
-        transform.localPosition = Vector3.zero;
         transform.localScale = Vector3.one;
+
+        pot.Set_Plant(this);
 
         update_sprite();
     }
