@@ -21,11 +21,6 @@ public class Plant : MonoBehaviour
         gameObject.name = details.name;
 
         Plant_Pot pot = manager.plant_pots[pot_number];
-
-        transform.parent = pot.transform;
-
-        transform.localScale = Vector3.one;
-
         pot.Set_Plant(this);
 
         update_sprite();

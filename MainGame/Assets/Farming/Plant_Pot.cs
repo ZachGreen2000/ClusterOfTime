@@ -10,6 +10,11 @@ public class Plant_Pot : MonoBehaviour
         Plant = plant;
         gameObject.name = "Plant Pot " + plant.pot_number + " - " + plant.details.name;
 
-        plant.transform.localPosition = new Vector3(0, Plant_Offset, 0);
+        Transform plant_transform = plant.transform;
+
+        plant_transform.parent = this.transform;
+
+        plant_transform.localScale = Vector3.one;
+        plant_transform.localPosition = new Vector3(0, Plant_Offset, 0);
     }
 }
