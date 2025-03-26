@@ -35,6 +35,7 @@ public class Plant : MonoBehaviour
         if (percent_planted >= 1)
         {
             spriteRenderer.sprite = details.final_sprite;
+            spriteRenderer.sortingOrder = 1;
             grown = true;
         }
         else
