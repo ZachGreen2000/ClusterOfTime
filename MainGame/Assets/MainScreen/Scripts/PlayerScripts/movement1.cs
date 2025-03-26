@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class movement : MonoBehaviour
@@ -133,23 +134,25 @@ public class movement : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
 
-        // Check if the ray hits a breakable object
-        if (hit.collider != null
-            && hit.collider.gameObject.CompareTag("Anubis"))
+        // Check if the ray hits a interactable object
+        if (hit.collider != null)
         {
-            npcManager.AnubisScenes();
-        }
-        if (hit.collider != null
-           && hit.collider.gameObject.CompareTag("Peter"))
-        {
-            npcManager.PeterScenes();
-        }
-        if (hit.collider != null
-           && hit.collider.gameObject.CompareTag("Gary"))
-        {
-            npcManager.GaryScenes();
-        }
+            switch (hit.transform.tag) {
 
+                case "Anubis":
+                    npcManager.AnubisScenes();
+                    break;
+                case "Peter":
+                    npcManager.PeterScenes();
+                    break;
+                case "Gary":
+                    npcManager.GaryScenes();
+                    break;
+                case "PlantPot":
+                    Debug.Log("Plant Pot");
+                    break;
+            }
+        }
     }
 
     void Attack()
