@@ -56,7 +56,7 @@ public class movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            NPCInteraction();
+            Interact();
         }
     }
 
@@ -128,7 +128,7 @@ public class movement : MonoBehaviour
         }
     }
 
-    void NPCInteraction()
+    void Interact()
     {
         // Get the mouse position in world coordinates
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
