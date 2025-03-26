@@ -114,11 +114,8 @@ public class movement : MonoBehaviour
 
     void ZGBreakObject()
     {
-        // Get the mouse position in world coordinates
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Raycast from the player to the mouse position
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (mousePos - transform.position).normalized, ZGbreakRange, ZGbreakableLayer);
+        // Get Mouse Hit
+        RaycastHit2D hit = GetMouseRaycastHit();
 
         // Check if the ray hits a breakable object
         if (hit.collider != null)
@@ -130,11 +127,8 @@ public class movement : MonoBehaviour
 
     void Interact()
     {
-        // Get the mouse position in world coordinates
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Raycast from the player to the mouse position
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (mousePos - transform.position).normalized, ZGbreakRange, JFnpcLayer);
+        // Get Mouse Hit
+        RaycastHit2D hit = GetMouseRaycastHit();
 
         // Check if the ray hits a breakable object
         if (hit.collider != null
@@ -167,5 +161,17 @@ public class movement : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    // Gets raycast of the mouse position
+    RaycastHit2D GetMouseRaycastHit()
+    {
+        // Get the mouse position in world coordinates
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Raycast from the player to the mouse position
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (mousePos - transform.position).normalized, ZGbreakRange, JFnpcLayer);
+
+        return hit;
     }
 }
