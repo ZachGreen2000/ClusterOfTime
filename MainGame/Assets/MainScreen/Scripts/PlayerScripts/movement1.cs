@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class movement : MonoBehaviour
@@ -56,7 +57,7 @@ public class movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            NPCInteraction();
+            Interact();
         }
     }
 
@@ -128,31 +129,30 @@ public class movement : MonoBehaviour
         }
     }
 
-    void NPCInteraction()
+    void Interact()
     {
-        // Get the mouse position in world coordinates
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
 
-        // Raycast from the player to the mouse position
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (mousePos - transform.position).normalized, ZGbreakRange, JFnpcLayer);
+        // Check if the ray hits a interactable object
+        if (hit.collider != null)
+        {
+            switch (hit.transform.tag) {
 
-        // Check if the ray hits a breakable object
-        if (hit.collider != null
-            && hit.collider.gameObject.CompareTag("Anubis"))
-        {
-            npcManager.AnubisScenes();
+                case "Anubis":
+                    npcManager.AnubisScenes();
+                    break;
+                case "Peter":
+                    npcManager.PeterScenes();
+                    break;
+                case "Gary":
+                    npcManager.GaryScenes();
+                    break;
+                case "PlantPot":
+                    hit.collider.transform.parent.GetComponent<Plant_Pot>().player_interact();
+                    break;
+            }
         }
-        if (hit.collider != null
-           && hit.collider.gameObject.CompareTag("Peter"))
-        {
-            npcManager.PeterScenes();
-        }
-        if (hit.collider != null
-           && hit.collider.gameObject.CompareTag("Gary"))
-        {
-            npcManager.GaryScenes();
-        }
-
     }
 
     void Attack()

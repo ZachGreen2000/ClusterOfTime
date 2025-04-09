@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe8314c9d7fc064d9fe0193bf946c2b, type: 3}
+  m_Name: Carrot
+  m_EditorClassIdentifier: 
+  name: Carrot
+  description: A vibrant orange carrot, fresh from the earth. Known for its crisp
+    texture and natural sweetness, this humble root vegetable is packed with nutrients.
+  growth_time: 5
+  growth_stages:
+  - {fileID: 21300000, guid: 0ddae33e9a971e341b2045229c7e5c5d, type: 3}
+  - {fileID: 21300000, guid: 672ef6483b39f194e96983f5cd56447c, type: 3}
+  final_sprite: {fileID: 21300000, guid: dd63e172d22b8c746bc8184c2c9e02cc, type: 3}
