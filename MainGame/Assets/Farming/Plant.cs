@@ -11,7 +11,7 @@ public class Plant : MonoBehaviour
     public int pot_number;
 
     private bool grown = false;
-    bool get_grown()
+    public bool get_grown()
     {
         return grown;
     }

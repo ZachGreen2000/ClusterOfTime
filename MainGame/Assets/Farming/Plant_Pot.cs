@@ -19,6 +19,19 @@ public class Plant_Pot : MonoBehaviour
     }
     public void player_interact()
     {
-        Debug.Log("Interact");
+        // If Empty Open Menu that allows for Planting
+        if (Plant == null) {
+            Debug.Log("Planting Plant");
+        }
+        // If Grown Harvest Plant
+        else if (Plant.get_grown())
+        {
+            Debug.Log("Harvest Plant");
+        }
+        // If Growing Do Nothing
+        else
+        {
+            Debug.Log("Plant Is Still Growning");
+        }
     }
 }
