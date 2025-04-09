@@ -50,4 +50,13 @@ public class Plant : MonoBehaviour
             grown = false;
         }
     }
+
+    public void harvest()
+    {
+        Debug.Log("Harvest Plant");
+        manager.mark_save_dirty();
+        // TODO Play Harvest Sound
+        // TODO Add To Inventory
+        Destroy(gameObject);
+    }
 }

@@ -26,7 +26,8 @@ public class Plant_Pot : MonoBehaviour
         // If Grown Harvest Plant
         else if (Plant.get_grown())
         {
-            Debug.Log("Harvest Plant");
+            Plant.harvest();
+            gameObject.name = "Plant Pot - " + "Empty";
         }
         // If Growing Do Nothing
         else

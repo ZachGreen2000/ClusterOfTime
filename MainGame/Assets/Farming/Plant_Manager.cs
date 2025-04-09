@@ -11,6 +11,7 @@ public class Plant_Manager : MonoBehaviour
     public int Current_Date;
 
     [SerializeField] Plant_Details default_plant;
+    private bool save_dirty = false;
 
     private const string path = "/plants.json";
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,7 +27,7 @@ public class Plant_Manager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("Saving Plants...");
-            Save_Plants(plants);
+            Save_Plants();
             Debug.Log("Plants Saved");
         }
         else if (Input.GetKeyDown(KeyCode.L))
@@ -53,13 +54,50 @@ public class Plant_Manager : MonoBehaviour
         }
     }
 
-    private void Save_Plants(Plant[] plant_array)
+    void LateUpdate()
     {
-        Plant_Save_Details Save_Details = new Plant_Save_Details(plant_array);
+        if (save_dirty)
+        {
+            Save_Plants();
+            save_dirty = false;
+        }
+    }
+
+    public void mark_save_dirty()
+    {
+        save_dirty = true;
+    }
+
+    public void Save_Plants()
+    {
+        update_array();
+
+        Plant_Save_Details Save_Details = new Plant_Save_Details(plants);
         string Json_Save = JsonUtility.ToJson(Save_Details, true);
 
         string file_path = Application.persistentDataPath + path;
         File.WriteAllText(file_path, Json_Save);
+    }
+
+    private void update_array()
+    {
+        // Calculate New Array Size
+        int new_size = 0;
+        foreach (Plant plant in plants){
+            if (plant != null) {
+                new_size++;
+            }
+        }
+        Plant[] new_plant = new Plant[new_size];
+        int i = 0;
+        foreach (Plant plant in plants)
+        {
+            if (plant != null) {
+                new_plant[i] = plant;
+                i++;
+            }
+        }
+        plants = new_plant;
     }
 
     private void Load_Plants()
@@ -109,7 +147,7 @@ public class Plant_Manager : MonoBehaviour
             plants[0] = new_plant;
 
             // Save Details
-            Save_Plants(plants);
+            Save_Plants();
         }
     }
 }
