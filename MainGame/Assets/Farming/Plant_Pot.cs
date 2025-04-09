@@ -17,4 +17,8 @@ public class Plant_Pot : MonoBehaviour
         plant_transform.localScale = Vector3.one;
         plant_transform.localPosition = new Vector3(0, Plant_Offset, 0);
     }
+    public void player_interact()
+    {
+        Debug.Log("Interact");
+    }
 }

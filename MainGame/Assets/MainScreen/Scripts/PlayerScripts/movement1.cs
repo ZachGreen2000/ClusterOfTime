@@ -149,7 +149,7 @@ public class movement : MonoBehaviour
                     npcManager.GaryScenes();
                     break;
                 case "PlantPot":
-                    Debug.Log("Plant Pot");
+                    hit.collider.transform.parent.GetComponent<Plant_Pot>().player_interact();
                     break;
             }
         }
